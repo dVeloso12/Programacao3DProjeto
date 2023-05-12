@@ -8,5 +8,6 @@
 
 int main(void)
 {
+	int teste = 4;
 	return 0;
 }

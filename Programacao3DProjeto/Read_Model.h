@@ -11,7 +11,6 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 #include "Read_MTL.h"
-//#include "Texture.hpp"
 
 namespace Models {
 	class Model {
@@ -23,7 +22,7 @@ namespace Models {
 		std::vector<GLfloat> _positions;
 		std::vector<GLfloat> _texCoords;
 		std::vector<GLfloat> _normals;
-		//Texture* _texture;
+	
 
 	public:
 		void Read(const std::string& fileName);

@@ -2,9 +2,9 @@
 C:\P3D_project\Programacao3DProjeto\Programacao3DProjeto\Read_Model.cpp(20,39): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
 MSVCRT.lib(initializers.obj) : warning LNK4098: defaultlib 'libcmt.lib' conflita com uso de outras bibliotecas; use /NODEFAULTLIB:library
   Gerando código
-  2 of 485 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    27 functions had inline decision re-evaluated but remain unchanged
+  3 of 486 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' não foi encontrado 'glew32s.lib(glew.obj)' ou no 'C:\P3D_project\Programacao3DProjeto\x64\Release\vc120.pdb'; vinculando objeto quando quando sem nenhuma informação de depuração
 LINK : warning LNK4286: o símbolo '__glewGenBuffers' definido em 'glew32s.lib(glew.obj)' é importado por 'Read_Model.obj'

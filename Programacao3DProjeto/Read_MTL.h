@@ -5,7 +5,6 @@
 #include <sstream>
 #include <glm/glm.hpp>
 
-//#include "Texture.hpp"
 
 
 namespace Models {
@@ -16,7 +15,7 @@ namespace Models {
 		glm::vec3 _diffuse;
 		glm::vec3 _specular;
 		float _shininess;
-		//Texture* _texture;
+		
 
 	public:
 		Read_MTL(const std::string& fileName);

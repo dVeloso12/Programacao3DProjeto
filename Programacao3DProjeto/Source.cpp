@@ -66,6 +66,7 @@ int main(void)
 	mainCam = new Camera(45.0f, Width, Height, 0.1, 100); //criar camera
 	
 	glfwSetScrollCallback(window, scrollCallback);
+
 	Models::Model* ball = new Models::Model();
 	ball->Read("PoolBalls/Ball1.obj");
 	

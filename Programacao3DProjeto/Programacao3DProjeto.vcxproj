@@ -129,11 +129,15 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Paralelepipedo.cpp" />
+    <ClCompile Include="Read_Model.cpp" />
+    <ClCompile Include="Read_MTL.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Paralelepipedo.h" />
+    <ClInclude Include="Read_Model.h" />
+    <ClInclude Include="Read_MTL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

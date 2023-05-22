@@ -11,6 +11,8 @@
 
 #include "Camera.h"
 #include "Paralelepipedo.h"
+#include "Read_Model.h"
+
 
 #pragma comment (lib,"glew32s.lib")
 #pragma comment (lib,"glfw3.lib")
@@ -35,6 +37,7 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 
 int main(void)
 {
+	glewInit();
 	Paralelepipedo* paralelepipedo = new Paralelepipedo(2.0f,0.5f,1.0f);
 
 	//iniciar a janela 
@@ -51,6 +54,10 @@ int main(void)
 	glfwMakeContextCurrent(window);//para poder usar a janela
 	
 	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+
+
+
+
 	glEnable(GL_DEPTH_TEST);
 	// Descomentar para ativar o Face Culling
 	glEnable(GL_CULL_FACE);
@@ -59,6 +66,8 @@ int main(void)
 	mainCam = new Camera(45.0f, Width, Height, 0.1, 100); //criar camera
 	
 	glfwSetScrollCallback(window, scrollCallback);
+	Models::Model* ball = new Models::Model();
+	ball->Read("PoolBalls/Ball1.obj");
 	
 	while (!glfwWindowShouldClose(window)) //irá fechar a janela, caso se clique no botao de X na janela
 	{	

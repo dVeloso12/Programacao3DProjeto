@@ -41,35 +41,11 @@ mat4x4 Camera :: ViewCamera()
 	);
 
 }
-mat4x4 Camera::RotateCamera(GLFWwindow* window, float deltaTime)
-{
-		float screenHalf = WIDTH / 2;
-		double mouseX, mouseY;
-		glfwGetCursorPos(window, &mouseX, &mouseY);
-		const GLfloat MAX_ROTATION = glm::radians(90.0f) * deltaTime;
-
-		if (mouseX < screenHalf / 2)
-		{
-			rotation = 0.7f;
-			/*cout << ((screenHalf - mouseX) / screenHalf * MAX_ROTATION) << endl; */
-		}
-		else if(mouseX > (screenHalf + (screenHalf/2)))
-		{
-			rotation = -0.7f;
-		}
-		else
-		{
-			rotation = 0;
-		}
-		
-		return rotate(view, rotation * deltaTime, vec3(0.0f, 1.0f, 0.0f));
-	
-}
 void Camera::UpdateCamera(GLFWwindow* window,float deltaTime)
 {
 	if (glfwGetWindowAttrib(window, GLFW_HOVERED))
 	{
-		view = RotateCamera(window, deltaTime) + ViewCamera();
+		view =  ViewCamera();
 
 	}
 	else

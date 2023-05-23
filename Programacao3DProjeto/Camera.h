@@ -20,7 +20,6 @@ public:
 	
 
 private:
-	mat4x4 RotateCamera(GLFWwindow* window, float deltaTime);
 	mat4x4 ViewCamera();
 	mat4 Projection;
 	mat4 view;

@@ -10,6 +10,7 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 #include "Camera.h"
+#include "World.h"
 #include "Paralelepipedo.h"
 #include "Read_Model.h"
 
@@ -32,6 +33,7 @@ Camera* mainCam;
 void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 
 	mainCam->ZoomCamera(window, xoffset, yoffset);
+	
 }
 
 
@@ -63,7 +65,11 @@ int main(void)
 	glEnable(GL_CULL_FACE);
 
 
-	mainCam = new Camera(45.0f, Width, Height, 0.1, 100); //criar camera
+	mainCam = new Camera(45.0f, Width, Height, 0.1, 100,vec3(0,1,0)); //criar camera
+
+	World world = World(mainCam);
+
+	mainCam->ChangeCameraPosition(vec3(0, 2, 0));
 	
 	glfwSetScrollCallback(window, scrollCallback);
 
@@ -76,9 +82,7 @@ int main(void)
 		double time = glfwGetTime();
 		deltaTime = time - prevTime;
 		prevTime = time;
-
 		mainCam->UpdateCamera(window,deltaTime);
-
 		// MVP
 		mat4 mvp = mainCam->getProjection() * mainCam->getViewValue() * paralelepipedo->getModel();
 

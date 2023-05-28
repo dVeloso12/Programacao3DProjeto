@@ -1,3 +1,4 @@
+
 #pragma once
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
@@ -8,19 +9,21 @@
 #include <iostream>
 #include <vector>
 
+#include "Camera.h"
 
 using namespace std;
 using namespace glm;
 
-class Paralelepipedo
+class World
 {
-public :
-	Paralelepipedo(float xLenght,float yLenght,float zLenght);
-	mat4 getModel();
-	vector<vec3> vertex;
-	void displayModel(vector<vec3> vertex,mat4 mvp);
 private:
-	vector<vec3> getVertex(float xLenght, float yLenght,float zLenght);
-	mat4 Model;
-	
+	Camera* mainCamera;
+	vector<Camera*> allCameras;
+
+
+
+public:
+	World(Camera* camera);
+	void AddCameraToList(Camera* camera);
+	void SetMainCamera(Camera* camera);
 };

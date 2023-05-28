@@ -132,12 +132,16 @@
     <ClCompile Include="Read_Model.cpp" />
     <ClCompile Include="Read_MTL.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldPosition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Paralelepipedo.h" />
     <ClInclude Include="Read_Model.h" />
     <ClInclude Include="Read_MTL.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="WorldPosition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

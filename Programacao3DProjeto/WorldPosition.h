@@ -18,7 +18,6 @@ protected:
 
 public:
 	WorldPosition();
-
 	virtual void SetPosition(vec3 value);
 	vec3 GetPosition();
 	virtual void SetRotation(vec3 value);

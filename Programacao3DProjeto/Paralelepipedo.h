@@ -16,9 +16,11 @@ class Paralelepipedo
 {
 public :
 	Paralelepipedo(float xLenght,float yLenght,float zLenght);
+	Paralelepipedo();
 	mat4 getModel();
 	vector<vec3> vertex;
 	void displayModel(vector<vec3> vertex,mat4 mvp);
+	void Rotate(float value, vec3 direction);
 private:
 	vector<vec3> getVertex(float xLenght, float yLenght,float zLenght);
 	mat4 Model;

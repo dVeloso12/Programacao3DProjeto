@@ -65,7 +65,7 @@ int main(void)
 	glEnable(GL_CULL_FACE);
 
 
-	mainCam = new Camera(45.0f, Width, Height, 0.1, 100,vec3(0,1,0)); //criar camera
+	mainCam = new Camera(45.0f, Width, Height, 0.1, 100,vec3(0,1,0),window); //criar camera
 
 	World world = World(mainCam);
 
@@ -76,19 +76,16 @@ int main(void)
 	Models::Model* ball = new Models::Model();
 	ball->Read("PoolBalls/Ball1.obj");
 	
+	world.SaveInWorld(paralelepipedo);
 	while (!glfwWindowShouldClose(window)) //irá fechar a janela, caso se clique no botao de X na janela
 	{	
 		// Updating delta time
 		double time = glfwGetTime();
 		deltaTime = time - prevTime;
 		prevTime = time;
-		mainCam->UpdateCamera(window,deltaTime);
-		// MVP
-		mat4 mvp = mainCam->getProjection() * mainCam->getViewValue() * paralelepipedo->getModel();
+		mainCam->UpdateCamera(deltaTime);
 
-		//mostrar paralelepipedo
-		paralelepipedo->displayModel(paralelepipedo->vertex, mvp);
-
+		world.DisplayWorld(deltaTime);
 
 		glfwSwapBuffers(window);
 		//cuida de todos os GLFW events

@@ -11,6 +11,7 @@ World::World(Camera* camera)
 	if (camera == NULL) return;
 	mainCamera = camera;
 	allCameras.push_back(mainCamera);
+
 }
 
 void World::AddCameraToList(Camera* camera)
@@ -35,4 +36,48 @@ void World::SetMainCamera(Camera* camera)
 		allCameras.push_back(camera);
 	}
 	mainCamera = camera;
+}
+void World::DisplayWorld(float deltaTime)
+{
+	setParalelepipedo(deltaTime);
+}
+
+void World::SaveInWorld(Paralelepipedo* savaParale)
+{
+	paralelepipedo = savaParale;
+
+}
+void World::setParalelepipedo(float deltaTime)
+{
+	float screenHeightHalf = mainCamera->getHeight() / 2;
+	float screenWidthHalf = mainCamera->getWidth() / 2;
+	double mouseX, mouseY;
+	glfwGetCursorPos(mainCamera->getWindow(), &mouseX, &mouseY);
+	const GLfloat MAX_ROTATION = glm::radians(90.0f) * deltaTime;
+
+	float rotateValue = 0.001f;
+	if (mouseX < screenWidthHalf / 2)
+	{
+		paralelepipedo->Rotate(rotateValue, vec3(0.0f, 1.0f, 0.0f));
+	}
+	else if (mouseX > (screenWidthHalf + (screenWidthHalf / 2)))
+	{
+		paralelepipedo->Rotate(-rotateValue, vec3(0.0f, 1.0f, 0.0f));
+
+	}
+	if (mouseY < screenHeightHalf / 2)
+	{
+		paralelepipedo->Rotate(rotateValue, vec3(1.0f, 0.0f, 0.0f));
+
+	}
+	else if(mouseY > (screenHeightHalf + (screenHeightHalf / 2)))
+	{
+		paralelepipedo->Rotate(-rotateValue, vec3(1.0f, 0.0f, 0.0f));
+
+	}
+	// MVP
+	mat4 mvpParalelipedo = mainCamera->getProjection() * mainCamera->getViewValue() * paralelepipedo->getModel();
+
+	//mostrar paralelepipedo
+	paralelepipedo->displayModel(paralelepipedo->vertex, mvpParalelipedo);
 }

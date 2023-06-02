@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "Camera.h"
+#include "Paralelepipedo.h"
 
 using namespace std;
 using namespace glm;
@@ -19,11 +20,14 @@ class World
 private:
 	Camera* mainCamera;
 	vector<Camera*> allCameras;
-
-
+	Paralelepipedo* paralelepipedo;
 
 public:
 	World(Camera* camera);
 	void AddCameraToList(Camera* camera);
 	void SetMainCamera(Camera* camera);
+	void DisplayWorld(float deltaTime);
+	void SaveInWorld(Paralelepipedo* savaParale);
+private:
+	void setParalelepipedo(float deltaTime);
 };

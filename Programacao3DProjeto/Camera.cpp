@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 #pragma region Contrutor
-Camera::Camera(float Fov,int width,int height,float near,float far,vec3 Pos)
+Camera::Camera(float Fov,int width,int height,float near,float far,vec3 Pos, GLFWwindow* _window)
 {
 	Projection = perspective(radians(Fov), float(width) / float(height), near, far);
 	ZOOM = 10.0f;
@@ -11,6 +11,7 @@ Camera::Camera(float Fov,int width,int height,float near,float far,vec3 Pos)
 	Position = Pos;
 	view = ViewCamera();
 	Direction = vec3(0.0f, 0.0f, -1.0f);
+	window = _window;
 }
 #pragma endregion
 #pragma region get Variaveis
@@ -18,6 +19,9 @@ mat4 Camera :: getViewValue(){return view;}
 mat4 Camera :: getProjection() { return Projection; }
 vec3 Camera::getPosition() { return Position; }
 vec3 Camera::getDirection() { return Direction; }
+GLFWwindow* Camera::getWindow() { return window;};
+float Camera::getWidth() { return WIDTH;};
+float Camera::getHeight() { return HEIGHT;};
 #pragma endregion
 #pragma region Metodos
 void Camera::ZoomCamera(GLFWwindow* window, double xoffset, double yoffset)
@@ -54,7 +58,7 @@ mat4x4 Camera :: ViewCamera()
 		vec3(0.0f, 1.0f, 0.0f)		// Vector vertical
 	);
 }
-void Camera::UpdateCamera(GLFWwindow* window,float deltaTime)
+void Camera::UpdateCamera(float deltaTime)
 {
 	if (glfwGetWindowAttrib(window, GLFW_HOVERED))
 	{

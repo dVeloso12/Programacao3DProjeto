@@ -15,13 +15,16 @@ using namespace glm;
 class Camera : public WorldPosition
 {
 public:
-	Camera(float Fov, int width, int height, float near, float far,vec3 Pos);
+	Camera(float Fov, int width, int height, float near, float far,vec3 Pos, GLFWwindow* window);
 	void ZoomCamera(GLFWwindow* window, double xoffset, double yoffset);
 	mat4 getProjection();
 	mat4 getViewValue();
 	vec3 getPosition();
 	vec3 getDirection();
-	void UpdateCamera(GLFWwindow* window, float deltaTime);
+	GLFWwindow* getWindow();
+	float getWidth();
+	float getHeight();
+	void UpdateCamera(float deltaTime);
 	void ChangeCameraPosition(vec3 newPosition);
 	void ChangeCameraDirection(vec3 newDirection);
 	
@@ -37,6 +40,6 @@ private:
 	float rotation;
 	vec3 Position;
 	vec3 Direction;
-
+	GLFWwindow* window;
 
 };

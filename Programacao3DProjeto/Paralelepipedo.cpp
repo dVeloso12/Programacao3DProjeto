@@ -2,9 +2,16 @@
 #include "Paralelepipedo.h"
 #include <glm/gtc/type_ptr.hpp> // value_ptr
 
+
+
 Paralelepipedo :: Paralelepipedo(float xLenght,float yLenght,float zLenght)
 {
 	vertex = getVertex(xLenght,yLenght,zLenght);
+	Model = mat4(1.0f);
+}
+Paralelepipedo::Paralelepipedo()
+{
+	
 }
 vector<vec3> Paralelepipedo :: getVertex(float xLenght,float yLenght,float zLenght)
 {
@@ -50,7 +57,7 @@ vector<vec3> Paralelepipedo :: getVertex(float xLenght,float yLenght,float zLeng
 }
 mat4 Paralelepipedo::getModel()
 {
-	return mat4(1.0f);
+	return Model;
 }
 void Paralelepipedo::displayModel(vector<vec3> vertex, mat4 mvp)
 {
@@ -83,4 +90,12 @@ void Paralelepipedo::displayModel(vector<vec3> vertex, mat4 mvp)
 		glVertex3f(normalized_vertex.x, normalized_vertex.y, normalized_vertex.z);
 	}
 	glEnd();
+}
+void Paralelepipedo::Rotate(float value,vec3 direction)
+{
+	//Model = rotate(Model, value, normalize(vec3(0.0f, 1.0f, 0.0f)));
+	//Model = rotate(Model, value, normalize(vec3(1.0f, 0.0f, 0.0f)));
+
+	Model = rotate(Model, value, normalize(direction));
+
 }

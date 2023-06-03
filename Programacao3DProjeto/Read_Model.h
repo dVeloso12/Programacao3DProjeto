@@ -1,3 +1,4 @@
+#pragma once
 #include <glm/glm.hpp>
 #include <vector>
 #include <GL\glew.h>
@@ -13,6 +14,7 @@
 #include "Read_MTL.h"
 
 namespace Models {
+
 	class Model {
 
 	private:
@@ -26,6 +28,7 @@ namespace Models {
 
 	public:
 		void Read(const std::string& fileName);
+		void DrawModel(glm::mat4 model, glm::mat4 view, glm::mat4 projection);
 	private:
 		void Send();
 

@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Paralelepipedo.cpp" />
     <ClCompile Include="Read_Model.cpp" />
     <ClCompile Include="Read_MTL.cpp" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Paralelepipedo.h" />
     <ClInclude Include="Read_Model.h" />
     <ClInclude Include="Read_MTL.h" />

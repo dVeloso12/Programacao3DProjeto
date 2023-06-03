@@ -113,7 +113,28 @@ namespace Models {
 		//Send();
 	}
 
+	void Model::DrawModel(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
+		// Activate the vertex array that holds the data of this model
+		glBindVertexArray(_vao);
 
+		glm::mat4 mv = view * model;
+
+		glm::mat4 mvp = projection * mv;
+
+		glm::mat3 normalMatrix = glm::inverseTranspose(glm::mat3(view * model));
+
+
+		//SEM ISTO NAO DA LOAD DO MODEL
+		// 
+		// Updates the matrices used to draw the model in the program shader
+		//_shader->SetUniformMatrix4fv("uView", view);
+		//_shader->SetUniformMatrix4fv("uMV", mv);
+		//_shader->SetUniformMatrix4fv("uMVP", mvp);
+		//_shader->SetUniformMatrix3fv("uNormalMatrix", normalMatrix);
+
+		// Draw call
+		glDrawArrays(GL_TRIANGLES, 0, _positions.size() / 3);
+	}
 
 
 	void Model::Send() {

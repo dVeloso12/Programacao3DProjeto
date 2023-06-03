@@ -11,6 +11,7 @@ World::World(Camera* camera)
 	if (camera == NULL) return;
 	mainCamera = camera;
 	allCameras.push_back(mainCamera);
+	gameObjCoutnt = 0;
 
 }
 
@@ -40,6 +41,7 @@ void World::SetMainCamera(Camera* camera)
 void World::DisplayWorld(float deltaTime)
 {
 	setParalelepipedo(deltaTime);
+	setAllGameObjects(deltaTime);
 }
 
 void World::SaveInWorld(Paralelepipedo* savaParale)
@@ -47,6 +49,13 @@ void World::SaveInWorld(Paralelepipedo* savaParale)
 	paralelepipedo = savaParale;
 
 }
+void World::SaveInWorld(GameObject* obj, int index)
+{
+	allGameObjectsInWorld[index] = obj;
+	gameObjCoutnt = gameObjCoutnt + 1;
+
+}
+
 void World::setParalelepipedo(float deltaTime)
 {
 	float screenHeightHalf = mainCamera->getHeight() / 2;
@@ -80,4 +89,11 @@ void World::setParalelepipedo(float deltaTime)
 
 	//mostrar paralelepipedo
 	paralelepipedo->displayModel(paralelepipedo->vertex, mvpParalelipedo);
+}
+void World::setAllGameObjects(float deltaTime)
+{
+	for (int i = 1; i < gameObjCoutnt; i++)
+	{
+		allGameObjectsInWorld[i - 1]->DisplayGameObject(mainCamera->getViewValue(), mainCamera->getProjection());
+	}
 }

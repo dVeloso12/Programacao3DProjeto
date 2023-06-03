@@ -11,6 +11,7 @@
 
 #include "Camera.h"
 #include "Paralelepipedo.h"
+#include "GameObject.h"
 
 using namespace std;
 using namespace glm;
@@ -18,9 +19,11 @@ using namespace glm;
 class World
 {
 private:
+	int gameObjCoutnt;
 	Camera* mainCamera;
 	vector<Camera*> allCameras;
 	Paralelepipedo* paralelepipedo;
+	GameObject* allGameObjectsInWorld[20];
 
 public:
 	World(Camera* camera);
@@ -28,6 +31,9 @@ public:
 	void SetMainCamera(Camera* camera);
 	void DisplayWorld(float deltaTime);
 	void SaveInWorld(Paralelepipedo* savaParale);
+	void SaveInWorld(GameObject* obj,int index);
+
 private:
 	void setParalelepipedo(float deltaTime);
+	void setAllGameObjects(float deltaTime);
 };

@@ -12,12 +12,14 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 #include "Read_MTL.h"
+#include "Shader.h"
 
 namespace Models {
 
 	class Model {
 
 	private:
+		Shader* _shader;
 		Read_MTL* _material;
 		GLuint _vao;
 		GLuint _posBuffer, _texBuffer, _normalBuffer;
@@ -27,6 +29,8 @@ namespace Models {
 	
 
 	public:
+		void SetShader(Shader* shader);
+		Shader* GetShader();
 		void Read(const std::string& fileName);
 		void DrawModel(glm::mat4 model, glm::mat4 view, glm::mat4 projection);
 	private:

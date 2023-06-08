@@ -132,6 +132,7 @@
     <ClCompile Include="Paralelepipedo.cpp" />
     <ClCompile Include="Read_Model.cpp" />
     <ClCompile Include="Read_MTL.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldPosition.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Paralelepipedo.h" />
     <ClInclude Include="Read_Model.h" />
     <ClInclude Include="Read_MTL.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldPosition.h" />
   </ItemGroup>

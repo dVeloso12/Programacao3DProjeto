@@ -9,6 +9,14 @@
 
 namespace Models {
 	
+	void Model::SetShader(Shader* shader) {
+		_shader = shader;
+	}
+
+	Shader* Model::GetShader() {
+		return _shader;
+	}
+
 	void Model::Read(const std::string& fileName) {
 		std::ifstream inFile(fileName);
 
@@ -135,7 +143,6 @@ namespace Models {
 		// Draw call
 		glDrawArrays(GL_TRIANGLES, 0, _positions.size() / 3);
 	}
-
 
 	void Model::Send() {
 	

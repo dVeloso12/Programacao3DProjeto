@@ -14,6 +14,7 @@
 #include "Paralelepipedo.h"
 #include "Read_Model.h"
 #include "GameObject.h"
+#include "Shader.h"
 
 
 #pragma comment (lib,"glew32s.lib")
@@ -42,7 +43,6 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 
 int main(void)
 {
-	glewInit();
 	Paralelepipedo* paralelepipedo = new Paralelepipedo(2.0f,0.5f,1.0f);
 
 	//iniciar a janela 
@@ -57,7 +57,23 @@ int main(void)
 		return -1;
 	}
 	glfwMakeContextCurrent(window);//para poder usar a janela
-	
+
+	glewInit();
+
+	// Array of data used by the shader class to create a new program
+	ShaderData shaders[] = {
+		{ GL_VERTEX_SHADER, "shaders/light_vert.glsl" },
+		{ GL_FRAGMENT_SHADER, "shaders/light_frag.glsl" },
+		{ GL_NONE, NULL }
+	};
+
+	// Create new shader with the data from above
+	// Exits the program if the shader is not compiled
+	Shader* lightingShader = new Shader(shaders);
+	if (!lightingShader->IsCompiled()) exit(EXIT_FAILURE);
+
+
+
 	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 
 	glEnable(GL_DEPTH_TEST);
@@ -74,7 +90,9 @@ int main(void)
 	glfwSetScrollCallback(window, scrollCallback);
 
 	Models :: Model* ball = new Models :: Model();
+	ball->SetShader(lightingShader);
 	ball->Read("PoolBalls/Ball1.obj");
+	
 
 	//COLOCAR PARA GUARDAR MAIS DO QUE UMA BOLA , NESTE MOMENTO SO GUARDA UMA
 

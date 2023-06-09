@@ -134,6 +134,7 @@
     <ClCompile Include="Read_MTL.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldPosition.cpp" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="Read_Model.h" />
     <ClInclude Include="Read_MTL.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldPosition.h" />
   </ItemGroup>

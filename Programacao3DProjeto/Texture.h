@@ -2,6 +2,8 @@
 
 #include "Shader.h"
 
+using namespace std;
+
 class Texture {
 private:
 	unsigned int _textureId;
@@ -9,8 +11,8 @@ private:
 	int _width, _height, _bpp;
 
 public:
-	Texture(const std::string& fileName);
+	Texture(const string& fileName);
 	~Texture();
 
-	void Send(Rendering::Shader* shader);
+	void Send(Shader* shader);
 };

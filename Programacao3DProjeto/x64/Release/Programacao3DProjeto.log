@@ -1,17 +1,11 @@
-﻿  GameObject.cpp
-  Read_Model.cpp
-C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Read_Model.cpp(28,39): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Read_Model.cpp(144,54): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Source.cpp
-C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Source.cpp(84,73): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Source.cpp(129,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Source.cpp(130,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  World.cpp
+﻿  Read_Model.cpp
+C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Read_Model.cpp(29,39): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\Programacao3DProjeto\Read_Model.cpp(152,54): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
 MSVCRT.lib(initializers.obj) : warning LNK4098: defaultlib 'libcmt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  7 of 639 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    14 functions had inline decision re-evaluated but remain unchanged
+  4 of 779 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    6 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Diogo Veloso\Desktop\Universidade\3_Ano\2 Semestre\Programaçao3D\Programacao3DProjeto\x64\Release\vc120.pdb'; linking object as if no debug info
 LINK : warning LNK4286: symbol '__glewGenBuffers' defined in 'glew32s.lib(glew.obj)' is imported by 'Read_Model.obj'

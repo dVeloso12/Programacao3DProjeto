@@ -20,13 +20,13 @@ namespace Models {
 
 	private:
 		Shader* _shader;
-		Read_MTL* _material;
+		Material:: Read_MTL* _material;
+		Texture* _texture;
 		GLuint _vao;
 		GLuint _posBuffer, _texBuffer, _normalBuffer;
 		std::vector<GLfloat> _positions;
 		std::vector<GLfloat> _texCoords;
 		std::vector<GLfloat> _normals;
-	
 
 	public:
 		void SetShader(Shader* shader);

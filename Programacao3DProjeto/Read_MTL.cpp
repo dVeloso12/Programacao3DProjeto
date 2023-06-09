@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace Models {
+namespace Material {
 	Read_MTL::Read_MTL(const std::string& fileName) {
 		Read(fileName);
 	}
@@ -12,6 +12,7 @@ namespace Models {
 
 		if (!inFile.is_open()) {
 			std::cerr << "Models::Material::Read: Could not open file" << std::endl;
+			return;
 		}
 
 		int pos = fileName.find_last_of('/');
@@ -41,8 +42,20 @@ namespace Models {
 			else if (prefix == "map_Kd") {
 				iss >> prefix;
 				path = path + prefix;
-				
+				//_texture = new Texture(path); // -> deve estar errado pq no outro projeto esta a ler um ficheiro tga e agr temos que ler um png ou colocar um png na bola
 			}
+		}
+	}
+
+	void Read_MTL::Send(Shader* shader) {
+		shader->SetUniform3fv("uMaterial.emissive", _emissive);
+		shader->SetUniform3fv("uMaterial.ambient", _ambient);
+		shader->SetUniform3fv("uMaterial.diffuse", _diffuse);
+		shader->SetUniform3fv("uMaterial.specular", _specular);
+		shader->SetUniform1f("uMaterial.shininess", _shininess);
+
+		if (_texture) {
+			_texture->Send(shader);
 		}
 	}
 }

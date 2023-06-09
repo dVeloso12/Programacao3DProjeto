@@ -56,8 +56,9 @@ int main(void)
 		glfwTerminate();//fechar a janela
 		return -1;
 	}
-	glfwMakeContextCurrent(window);//para poder usar a janela
 
+	glfwMakeContextCurrent(window);//para poder usar a janela
+	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glewInit();
 
 	// Array of data used by the shader class to create a new program
@@ -71,14 +72,6 @@ int main(void)
 	// Exits the program if the shader is not compiled
 	Shader* lightingShader = new Shader(shaders);
 	if (!lightingShader->IsCompiled()) exit(EXIT_FAILURE);
-
-
-
-	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-
-	glEnable(GL_DEPTH_TEST);
-	// Descomentar para ativar o Face Culling
-	glEnable(GL_CULL_FACE);
 
 
 	mainCam = new Camera(45.0f, Width, Height, 0.1, 100,vec3(0,1,0),window); //criar camera
@@ -120,7 +113,9 @@ int main(void)
 
 	world.SaveInWorld(paralelepipedo);
 
-
+	glEnable(GL_DEPTH_TEST);
+	// Descomentar para ativar o Face Culling
+	glEnable(GL_CULL_FACE);
 	
 	while (!glfwWindowShouldClose(window)) //irá fechar a janela, caso se clique no botao de X na janela
 	{	

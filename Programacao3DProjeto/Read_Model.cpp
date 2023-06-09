@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_inverse.hpp>
 
 #include "Read_Model.h"
+#include "Read_MTL.h"
 
 namespace Models {
 	
@@ -87,6 +88,12 @@ namespace Models {
 						i = 0;
 					}
 				}
+
+			}
+			else if (prefix == "mtllib") {
+				iss >> prefix;
+				path = path + prefix;
+				//_material = new Material::Read_MTL(path);   //-> dar fix a class texture
 			}
 		}
 
@@ -118,7 +125,7 @@ namespace Models {
 		std::cout << "Number of uvs: " << tempTexCoords.size() << std::endl;
 		
 
-		//Send();
+		Send();
 	}
 
 	void Model::DrawModel(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
@@ -131,12 +138,13 @@ namespace Models {
 
 		glm::mat3 normalMatrix = glm::inverseTranspose(glm::mat3(view * model));
 
+		
 
 		//SEM ISTO NAO DA LOAD DO MODEL
-		// 
+		 
 		// Updates the matrices used to draw the model in the program shader
-		//_shader->SetUniformMatrix4fv("uView", view);
-		//_shader->SetUniformMatrix4fv("uMV", mv);
+		_shader->SetUniformMatrix4fv("uView", view);
+		/*_shader->SetUniformMatrix4fv("uMV", mv);*/
 		//_shader->SetUniformMatrix4fv("uMVP", mvp);
 		//_shader->SetUniformMatrix3fv("uNormalMatrix", normalMatrix);
 
@@ -146,27 +154,40 @@ namespace Models {
 
 	void Model::Send() {
 	
+		// Create new vertex array that will hold the data of this model
+		// In the GPU side
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 
-	
+		// Creates and binds the needed buffers to the currently activated VAO
+		// And links said buffers to the corresponding attributes of the shader program
+
+		// Buffer that holds the positions of the vertices
 		glGenBuffers(1, &_posBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, _posBuffer);
 		glBufferData(GL_ARRAY_BUFFER, _positions.size() * sizeof(GL_FLOAT), &_positions[0], GL_STATIC_DRAW);
 
-	
+		_shader->LinkInput("vPosition", GL_FLOAT, 3);
 
-		
+		// Buffer that holds the texture coordinates of the vertices
 		glGenBuffers(1, &_texBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, _texBuffer);
 		glBufferData(GL_ARRAY_BUFFER, _texCoords.size() * sizeof(GL_FLOAT), &_texCoords[0], GL_STATIC_DRAW);
 
-	
+		_shader->LinkInput("vTexCoord", GL_FLOAT, 2);
 
-		
+		// Buffer that holds the normals of the vertices
 		glGenBuffers(1, &_normalBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, _normalBuffer);
 		glBufferData(GL_ARRAY_BUFFER, _normals.size() * sizeof(GL_FLOAT), &_normals[0], GL_STATIC_DRAW);
+
+		_shader->LinkInput("vNormal", GL_FLOAT, 3);
+
+		// Tell the material to send its data to the shader program
+	/*	_material->Send(_shader);*/
+
+
+
 
 	}
 }

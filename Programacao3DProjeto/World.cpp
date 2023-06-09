@@ -92,8 +92,11 @@ void World::setParalelepipedo(float deltaTime)
 }
 void World::setAllGameObjects(float deltaTime)
 {
-	for (int i = 1; i < gameObjCoutnt; i++)
+	if (allGameObjectsInWorld != NULL)
 	{
-		allGameObjectsInWorld[i - 1]->DisplayGameObject(mainCamera->getViewValue(), mainCamera->getProjection());
+		for (int i = 1; i <= gameObjCoutnt; i++)
+		{
+			allGameObjectsInWorld[i - 1]->DisplayGameObject(mainCamera->getViewValue(), mainCamera->getProjection());
+		}
 	}
 }

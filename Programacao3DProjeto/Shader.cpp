@@ -4,7 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Shader.h"
-using namespace std;
+
 
 
 const GLchar* ReadShader(const char* fileName) {
@@ -127,4 +127,57 @@ void Shader::LoadShaders(ShaderData* shaders) {
 
 		_programId = program;
 	}
+}
+
+void Shader::Bind() {
+	glUseProgram(_programId);
+}
+
+void Shader::Unbind() {
+	glUseProgram(0);
+}
+
+void Shader::LinkInput(const std::string& name, unsigned int type, unsigned int count) {
+	int id = glGetProgramResourceLocation(_programId, GL_PROGRAM_INPUT, name.c_str());
+	glVertexAttribPointer(id, count, type, GL_FALSE, count * sizeof(type), 0);
+	glEnableVertexAttribArray(id);
+}
+
+//Associar valores aos shaders vertex e frag
+void Shader::SetUniform1i(const std::string& name, int value) {
+	glProgramUniform1i(_programId, GetUniformLocation(name), value);
+}
+
+void Shader::SetUniform1f(const std::string& name, float value) {
+	glProgramUniform1f(_programId, GetUniformLocation(name), value);
+}
+
+void Shader::SetUniform3f(const std::string& name, float v1, float v2, float v3) {
+	glProgramUniform3f(_programId, GetUniformLocation(name), v1, v2, v3);
+}
+
+void Shader::SetUniform3fv(const std::string& name, glm::vec3 value) {
+	glProgramUniform3fv(_programId, GetUniformLocation(name), 1, glm::value_ptr(value));
+}
+
+void Shader::SetUniformMatrix3fv(const std::string& name, glm::mat3 value) {
+	glProgramUniformMatrix3fv(_programId, GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(value));
+}
+
+void Shader::SetUniformMatrix4fv(const std::string& name, glm::mat4 value) {
+	glProgramUniformMatrix4fv(_programId, GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(value));
+}
+
+int Shader::GetUniformLocation(const std::string& name) {
+	if (_uniformLocations.find(name) != _uniformLocations.end()) {
+		return _uniformLocations.at(name);
+	}
+
+	int location = glGetUniformLocation(_programId, name.c_str());
+	if (location == -1) {
+		std::cerr << "Invalid uniform name: " << name << std::endl;
+	}
+
+	_uniformLocations[name] = location;
+	return location;
 }

@@ -4,6 +4,7 @@ uniform mat4 uView;
 uniform mat4 uMV;
 uniform mat4 uMVP;
 uniform mat3 uNormalMatrix;
+
 /*
 uniform float uTime;
 uniform float uWaveSpeed;

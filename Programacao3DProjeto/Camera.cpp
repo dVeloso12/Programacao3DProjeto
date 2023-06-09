@@ -9,8 +9,16 @@ Camera::Camera(float Fov,int width,int height,float near,float far,vec3 Pos, GLF
 	WIDTH = width;
 	HEIGHT = height;
 	Position = Pos;
-	view = ViewCamera();
 	Direction = vec3(0.0f, 0.0f, -1.0f);
+	rotation = 0;
+
+	Direction = normalize(Direction);
+	//view = ViewCamera();
+	view = lookAt(
+		vec3(Position.x, Position.y, Position.z + ZOOM),	// Posição da câmara no mundo
+		vec3(Direction.x, Direction.y, Direction.z),	// Direção para a qual a câmara esta apontada
+		vec3(0.0f, 1.0f, 0.0f));	// Vector vertical
+
 	window = _window;
 }
 #pragma endregion
